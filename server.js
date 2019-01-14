@@ -1,6 +1,8 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
+const port = process.env.PORT || 3040
 //express app
 var app = express();
 
@@ -35,12 +37,9 @@ hbs.registerHelper('getCurrentYear', () => {
 //     ]
 //   });
 // });
-app.use((req, res, next) => {
-  res.render('maintenance.hbs', {
-    pageTitle : 'Maintenance Page',
-    welcomeMessage: 'The site is cuurently ongoing repairs'
-  });
-});
+// app.use((req, res, next) => {
+//   res.render('maintenance.hbs');
+// });
 app.get('/about',(req, res) => {
   res.render('about.hbs', {
     pageTitle : 'About Page'
@@ -60,6 +59,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3040, () => {
-  console.log('Server is up on port 3040');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
